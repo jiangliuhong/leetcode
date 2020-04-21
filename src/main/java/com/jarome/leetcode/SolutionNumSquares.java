@@ -1,40 +1,58 @@
 package com.jarome.leetcode;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 public class SolutionNumSquares {
 
     public int numSquares(int num) {
-        Queue<Integer> queue = new LinkedList<Integer>();
+        List<Integer> sqrtList = new ArrayList<>();
+        // 先枚举出所有
+        for (int i = 1; i <= num; i++) {
+            int sqrt = i * i;
+            if (sqrt == num) {
+                return 1;
+            } else if (sqrt > num) {
+                // 已经超过当前数字了就不需要在执行了
+                break;
+            }
+            sqrtList.add(sqrt);
+        }
+        Queue<Integer> queue = new LinkedList<>();
         queue.offer(num);
-        while(!queue.isEmpty()){
-            Integer poll = queue.poll();
-            boolean fullySquareNumber = isFullySquareNumber((poll));
-            if(fullySquareNumber){
-
+        int count = 0;
+        while (!queue.isEmpty()) {
+            count = count + 1;
+            // 避免循环加入队列
+            Set<Integer> temp = new HashSet<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Integer poll = queue.poll();
+                for (Integer sqrt : sqrtList) {
+                    if (poll.equals(sqrt)) {
+                        return count;
+                    } else if (poll < sqrt) {
+                        break;
+                    } else {
+                        int nextVal = poll - sqrt;
+                        if (!temp.contains(nextVal)) {
+                            queue.offer(nextVal);
+                            temp.add(nextVal);
+                        }
+                    }
+                }
             }
         }
-        return 0;
-    }
-
-    private boolean isFullySquareNumber(int num) {
-        long start = 1, end = num / 2 + 1, res = 0;
-        while (start <= end) {
-            long mid = start + (end - start) / 2;
-            res = mid * mid;
-            if (res == num)
-                return true;
-            if (res > num)
-                end = mid - 1;
-            if (res < num)
-                start = mid + 1;
-        }
-        return false;
+        return count;
     }
 
     public static void main(String[] args) {
-
+        SolutionNumSquares sns = new SolutionNumSquares();
+        System.out.println(sns.numSquares(12));
     }
 
 }
