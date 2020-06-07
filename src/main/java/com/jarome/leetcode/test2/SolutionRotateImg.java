@@ -6,32 +6,39 @@ package com.jarome.leetcode.test2;
 public class SolutionRotateImg {
     public void rotate(int[][] matrix) {
         int n = matrix.length - 1;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = i; j < matrix[i].length; j++) {
-                // 循环移动数组
+        int isize = n / 2;
+        for (int i = 0; i <= isize; i++) {
+            for (int j = i; j < (n - i); j++) {
+                // 1,1 => 1,2
+                // 3,0 => 0,0
                 int thisI = i;
                 int thisJ = j;
-                // 方向 1234 上下左右，默认第一个向右
-                int direction = 4;
-                // 计算当前点所在层级，最外层，还是里层
-                int tier = Math.min(Math.min(thisI, n - thisI), Math.min(thisJ, n - thisJ));
-                while (true) {
-                    // 需要移动的次数为总数监区层级的两倍
-                    int move = n - tier * 2;
-                    // 计算下一个坐标
-                    int nextI = thisI;
-                    int nextJ = thisJ;
-                    for (int m = move; m > 0;) {
-                        if (nextJ - m >= tier) {
-                            nextJ = nextJ - m;
-                            m = 0;
-                            continue;
-                        }else{
-
-                        }
-                    }
-                }
+                int temp = matrix[i][j];
+                do {
+                    // 旋转90度，坐标的变化规则为：1.交换x、y坐标，2.y=len-y
+                    int nextI = thisJ;
+                    int nextJ = n - thisI;
+                    // 交换两数
+                    int nextVal = matrix[nextI][nextJ];
+                    matrix[nextI][nextJ] = temp;
+                    temp = nextVal;
+                    thisI = nextI;
+                    thisJ = nextJ;
+                } while (!(thisI == i && thisJ == j));
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        SolutionRotateImg sri = new SolutionRotateImg();
+        int[][] matrix = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
+        sri.rotate(matrix);
+        for (int i = 0; i < matrix.length; i++) {
+            String row = "";
+            for (int j = 0; j < matrix[i].length; j++) {
+                row = row + matrix[i][j] + " ";
+            }
+            System.out.println(row);
         }
     }
 }
