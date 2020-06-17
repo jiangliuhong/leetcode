@@ -31,7 +31,7 @@ public class SolutionMyAtoi {
             // 转为数字
             c = isAdd ? c - 48 : 48 - c;
             if ((Integer.MAX_VALUE / 10 < res || (Integer.MAX_VALUE / 10 == res && c > 7))
-                || Integer.MIN_VALUE / 10 > res || (Integer.MIN_VALUE / 10 == res && c < -8)) {
+                    || Integer.MIN_VALUE / 10 > res || (Integer.MIN_VALUE / 10 == res && c < -8)) {
                 return isAdd ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
             res = res * 10 + c;
