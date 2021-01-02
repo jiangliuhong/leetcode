@@ -6,17 +6,48 @@ public class SolutionIsPalindrome {
         if (head == null || head.next == null) {
             return true;
         }
-        if (head.next.next == null) {
-            return head.next.val == head.val;
+        int size = 1;
+        ListNode start = head;
+        ListNode end = head;
+        while (end.next != null) {
+            end = end.next;
+            size++;
         }
-        return ln(head, head.next, head.next.next);
+        int half = size / 2;
+        ListNode node = head;
+        int index = 1;
+        while (node.next != null) {
+            if (index < half) {
+                index++;
+                node = node.next;
+                continue;
+            }
+            // 开始反转
+            end = reverseList(node.next);
+            node.next = null;
+            break;
+        }
+        while (start != null && end != null) {
+            if (start.val != end.val) {
+                return false;
+            }
+            start = start.next;
+            end = end.next;
+        }
+        return true;
     }
 
-    private boolean ln(ListNode start, ListNode endPre, ListNode end) {
-        if (end.next == null) {
-            return start.val == end.val;
-        } else {
-            return ln(start, end, end.next) && start.next.val == endPre.val;
+    public ListNode reverseList(ListNode head) {
+        ListNode node = head;
+        ListNode pre = null;
+        while (node.next != null) {
+            ListNode next = node.next;
+            node.next = pre;
+            pre = node;
+            node = next;
         }
+        node.next = pre;
+        return node;
     }
+
 }
