@@ -5,30 +5,35 @@ package com.jarome.leetcode.algointo;
  */
 public class SolutionVersionControl {
 
-    public class VersionControl {
+    public static class VersionControl {
         boolean isBadVersion(int version) {
-            return true;
+            if (version >= 1702766719) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
-    // TTTTTFFFFFFFF
-    public class Solution extends VersionControl {
+    // FFFFFTTTTTTTTTTTT
+    public static class Solution extends VersionControl {
         public int firstBadVersion(int n) {
             int min = 1, max = n;
-            while (min <= max) {
-                int seq = (max + min) / 2;
+            while (min < max) {
+                int seq = min + (max - min) / 2;
                 boolean val = isBadVersion(seq);
                 if (val) {
-                    if (seq == min) {
-                        return seq;
-                    }
                     max = seq;
-
                 } else {
                     min = seq + 1;
                 }
             }
-            return -1;
+            return max;
         }
+    }
+
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        System.out.println(s.firstBadVersion(2126753390));
     }
 }
