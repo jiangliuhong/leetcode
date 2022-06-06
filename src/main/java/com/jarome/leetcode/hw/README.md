@@ -2,3 +2,25 @@
 - 无重复字符的最长子串：https://leetcode.cn/problems/longest-substring-without-repeating-characters/
 - 寻找两个正序数组的中位数：https://leetcode.cn/problems/median-of-two-sorted-arrays/
 - 最长回文：https://leetcode.cn/problems/longest-palindromic-substring/
+- Z 字形变换：https://leetcode.cn/problems/zigzag-conversion/
+- 整数反转：https://leetcode.cn/problems/reverse-integer/
+- 长度最小的子数组：https://leetcode.cn/problems/minimum-size-subarray-sum/
+- 区域和检索 - 数组不可变：https://leetcode.cn/problems/range-sum-query-immutable/
+- 二维码和检索 - 矩阵不可变：https://leetcode.cn/problems/range-sum-query-2d-immutable/
+- 连续数组：https://leetcode.cn/problems/contiguous-array/
+- 和为 k 的子数组
+- 和至少为 k 的最短子数组
+- 和可被 k 整除的子数组
+- 最大线路1的个数 3
+- 拼车
+- 航班预定统计
+- 表现良好的最长时间段
+- 构建回文字串检测
+- 每个元音包含偶数次的最
+- 一维数组的动态和
+- 最大子矩阵
+- 
+- 
+- 
+- 
+  ![](https://jlhblog.oss-cn-beijing.aliyuncs.com/images/2022/6/77d36cb192428fe583090a5b07f9784.png)
