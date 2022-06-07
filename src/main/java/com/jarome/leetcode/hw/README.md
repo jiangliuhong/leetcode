@@ -8,8 +8,8 @@
 - 区域和检索 - 数组不可变：https://leetcode.cn/problems/range-sum-query-immutable/
 - 二维码和检索 - 矩阵不可变：https://leetcode.cn/problems/range-sum-query-2d-immutable/
 - 连续数组：https://leetcode.cn/problems/contiguous-array/
-- 和为 k 的子数组
-- 和至少为 k 的最短子数组
+- 和为 k 的子数组：https://leetcode.cn/problems/subarray-sum-equals-k/
+- 和至少为 k 的最短子数组：https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/
 - 和可被 k 整除的子数组
 - 最大线路1的个数 3
 - 拼车
