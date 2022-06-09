@@ -1,5 +1,8 @@
 package com.jarome.leetcode.hw;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * 862.和可被 k 整除的子数组
  */
@@ -9,12 +12,20 @@ public class ShortestSubarray {
         int len = Integer.MAX_VALUE;
         long[] sums = new long[nums.length + 1];
         sums[0] = 0;
-        int start = 0;
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 1; i <= nums.length; i++) {
             sums[i] = sums[i - 1] + nums[i - 1];
-
         }
-        return len;
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < sums.length; i++) {
+            while (!deque.isEmpty() && sums[i] <= sums[deque.getLast()]) {
+                deque.removeLast();
+            }
+            while (!deque.isEmpty() && sums[i] - sums[deque.getFirst()] >= k) {
+                len = Math.min(len, i - deque.removeFirst());
+            }
+            deque.addLast(i);
+        }
+        return len == Integer.MAX_VALUE ? -1 : len;
     }
 
     // 超时
@@ -48,8 +59,8 @@ public class ShortestSubarray {
 
     public static void main(String[] args) {
         ShortestSubarray s = new ShortestSubarray();
-        System.out.println(s.shortestSubarray(new int[] {1}, 1));
-        System.out.println(s.shortestSubarray(new int[] {17, 85, 93, -45, -21}, 150));
-        System.out.println(s.shortestSubarray(new int[] {-28, 81, -20, -1, 29, -29}, 89));
+        System.out.println(s.shortestSubarray(new int[]{1}, 1));
+        System.out.println(s.shortestSubarray(new int[]{17, 85, 93, -45, -21}, 150));
+        System.out.println(s.shortestSubarray(new int[]{-28, 81, -20, -1, 29, -29}, 89));
     }
 }
